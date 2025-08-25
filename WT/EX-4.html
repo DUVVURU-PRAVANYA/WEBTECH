@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #0a3d1f, #1a5e2b);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px);
+            background-size: 50px 50px, 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(139, 0, 0, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 5px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #ffd700;
+            text-shadow: 3px 3px 0 #c00;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+        
+        .form-section h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px #000;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #ffd700;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            color: #0a3d1f;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px #ffd700;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        button {
+            background: linear-gradient(to bottom, #ffd700, #ff9800);
+            color: #8b0000;
+            border: none;
+            padding: 16px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to bottom, #ffe44d, #ffa726);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .success-message {
+            text-align: center;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            display: none;
+            text-shadow: 2px 2px 3px #000;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #ff6b6b;
+        }
+        
+        .decoration {
+            text-align: center;
+            font-size: 2rem;
+            margin: 10px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="snowflakes" id="snowflakes"></div>
+        
+        <header>
+            <div class="decoration">🎄 🎅 🎄</div>
+            <h1>Christmas Celebration Registration</h1>
+            <p class="subtitle">Join us for a magical evening of festive cheer!</p>
+            <p class="subtitle">December 24th, 2023 | 6:00 PM | North Pole Village</p>
+            <div class="decoration">⭐ 🎁 ⭐</div>
+        </header>
+        
+        <form id="christmasForm">
+            <div class="form-container">
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName" class="required">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Santa Claus">
+                        <div class="error" id="fullNameError">Please enter your full name (min 3 characters)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="santa@northpole.com">
+                        <div class="error" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                        <div class="error" id="phoneError">Please enter a valid 10-digit phone number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age" class="required">Your Age</label>
+                        <input type="number" id="age" name="age" min="1" max="120" placeholder="25">
+                        <div class="error" id="ageError">Please enter a valid age between 1 and 120</div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Celebration Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="guests" class="required">Number of Guests</label>
+                        <input type="number" id="guests" name="guests" min="1" max="10" placeholder="2">
+                        <div class="error" id="guestsError">Please enter between 1 and 10 guests</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dish" class="required">Dish You'll Bring</label>
+                        <input type="text" id="dish" name="dish" placeholder="Christmas Cookies">
+                        <div class="error" id="dishError">Please enter the dish you plan to bring</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="allergies" class="required">Any Allergies?</label>
+                        <select id="allergies" name="allergies">
+                            <option value="">Please select</option>
+                            <option value="none">None</option>
+                            <option value="nuts">Nuts</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="gluten">Gluten</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error" id="allergiesError">Please select an option</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attendanceDate" class="required">Attendance Date</label>
+                        <input type="date" id="attendanceDate" name="attendanceDate" required min="2023-12-20" max="2023-12-26">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Christmas Preferences</h2>
+                    
+                    <div class="form-group">
+                        <label for="favChristmasSong" class="required">Favorite Christmas Song</label>
+                        <input type="text" id="favChristmasSong" name="favChristmasSong" required pattern=".*[Cc]hristmas.*" placeholder="All I Want for Christmas">
+                        <div class="error" id="favChristmasSongError">Must contain "Christmas"</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="giftChoice" class="required">Preferred Gift Type</label>
+                        <select id="giftChoice" name="giftChoice">
+                            <option value="">Please select</option>
+                            <option value="toys">Toys</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="books">Books</option>
+                            <option value="sports">Sports Equipment</option>
+                        </select>
+                        <div class="error" id="giftChoiceError">Please select your preferred gift type</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partyDuration" class="required">How long will you stay? (hours)</label>
+                        <input type="range" id="partyDuration" name="partyDuration" required min="1" max="8" value="3">
+                        <output for="partyDuration" id="durationOutput">3 hours</output>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Additional Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="christmasSweater" class="required">Will you wear a Christmas sweater?</label>
+                        <div>
+                            <input type="checkbox" id="christmasSweater" name="christmasSweater" required style="width: auto; margin-right: 10px;">
+                            <label for="christmasSweater" style="display: inline;">Yes, I'll wear one!</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="secretSantaBudget" class="required">Secret Santa Budget ($)</label>
+                        <input type="number" id="secretSantaBudget" name="secretSantaBudget" required min="10" max="50" step="5" placeholder="20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Special Christmas Wishes or Comments</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Share your Christmas spirit with us!"></textarea>
+                        <div class="error" id="messageError">Message cannot exceed 200 characters</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Submit Registration</button>
+            
+            <div class="success-message" id="successMessage">
+                🎅 Thank you for registering! Merry Christmas! 🎄
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create snowflakes
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const snowflakes = ['❄', '⛄', '🎄', '🎅', '🦌', '⭐', '🎁', '🔔'];
+            
+            for (let i = 0; i < 40; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                snowflakesContainer.appendChild(snowflake);
+            }
+            
+            // Form elements
+            const form = document.getElementById('christmasForm');
+            const durationSlider = document.getElementById('partyDuration');
+            const durationOutput = document.getElementById('durationOutput');
+            
+            // Update slider output
+            durationSlider.addEventListener('input', function() {
+                durationOutput.value = this.value + ' hours';
+            });
+            
+            // Real-time validation for message character count
+            document.getElementById('message').addEventListener('input', function() {
+                const messageError = document.getElementById('messageError');
+                if (this.value.length > 200) {
+                    messageError.style.display = 'block';
+                } else {
+                    messageError.style.display = 'none';
+                }
+            });
+            
+            // Form validation on submit
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Validate Full Name
+                const fullName = document.getElementById('fullName');
+                const fullNameError = document.getElementById('fullNameError');
+                if (fullName.value.trim().length < 3) {
+                    fullNameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    fullNameError.style.display = 'none';
+                }
+                
+                // Validate Email
+                const email = document.getElementById('email');
+                const emailError = document.getElementById('emailError');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value)) {
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                }
+                
+                // Validate Phone
+                const phone = document.getElementById('phone');
+                const phoneError = document.getElementById('phoneError');
+                const phoneRegex = /^\d{10}$/;
+                if (!phoneRegex.test(phone.value.replace(/\D/g, ''))) {
+                    phoneError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    phoneError.style.display = 'none';
+                }
+                
+                // Validate Age
+                const age = document.getElementById('age');
+                const ageError = document.getElementById('ageError');
+                if (age.value < 1 || age.value > 120 || !age.value) {
+                    ageError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    ageError.style.display = 'none';
+                }
+                
+                // Validate Guests
+                const guests = document.getElementById('guests');
+                const guestsError = document.getElementById('guestsError');
+                if (guests.value < 1 || guests.value > 10) {
+                    guestsError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    guestsError.style.display = 'none';
+                }
+                
+                // Validate Dish
+                const dish = document.getElementById('dish');
+                const dishError = document.getElementById('dishError');
+                if (dish.value.trim() === '') {
+                    dishError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    dishError.style.display = 'none';
+                }
+                
+                // Validate Allergies
+                const allergies = document.getElementById('allergies');
+                const allergiesError = document.getElementById('allergiesError');
+                if (allergies.value === '') {
+                    allergiesError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    allergiesError.style.display = 'none';
+                }
+                
+                // Validate Gift Choice
+                const giftChoice = document.getElementById('giftChoice');
+                const giftChoiceError = document.getElementById('giftChoiceError');
+                if (giftChoice.value === '') {
+                    giftChoiceError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    giftChoiceError.style.display = 'none';
+                }
+                
+                // Validate Message (optional but with character limit)
+                const message = document.getElementById('message');
+                const messageError = document.getElementById('messageError');
+                if (message.value.length > 200) {
+                    messageError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    messageError.style.display = 'none';
+                }
+                
+                // If form is valid, show success message
+                if (isValid) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.reset();
+                    durationOutput.value = '3 hours';
+                    
+                    // You could submit the form to a server here
+                }
+            });
+        });
+    </script>
+</body>
+</html>
