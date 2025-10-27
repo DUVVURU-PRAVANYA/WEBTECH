@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Christmas Cookie Order Form</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+      font-family: Arial, sans-serif;
+      color: #2F1B14;
+      text-align: center;
+      padding: 50px 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: rgba(245, 222, 179, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      border: 3px solid #8B4513;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .header {
+      color: #8B4513;
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    .subtitle {
+      color: #D2691E;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    .menu {
+      background: #2F1B14;
+      color: #F5DEB3;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: left;
+      font-family: monospace;
+    }
+    .menu-title {
+      text-align: center;
+      color: #FFD700;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .cookie-input {
+      padding: 12px 15px;
+      border: 2px solid #8B4513;
+      border-radius: 20px;
+      font-size: 16px;
+      width: 300px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .order-button {
+      padding: 12px 25px;
+      background: #D2691E;
+      border: 2px solid #8B4513;
+      border-radius: 20px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .order-button:hover {
+      background: #CD853F;
+      transform: scale(1.05);
+    }
+    .decorations {
+      font-size: 1.5em;
+      margin: 20px 0;
+      color: #8B4513;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1 class="header">Christmas Cookie Order</h1>
+    <p class="subtitle">"Handmade with Christmas Love"</p>
+    
+    <div class="menu">
+      <div class="menu-title">Today's Special Menu</div>
+      <div style="border-bottom: 1px dashed #8B4513; margin: 8px 0;"></div>
+      <div>• Gingerbread Cookies.........$4.50</div>
+      <div>• Sugar Cookies.............$3.75</div>
+      <div>• Chocolate Chip...........$4.25</div>
+      <div>• Oatmeal Raisin...........$4.00</div>
+      <div>• Snickerdoodles...........$3.50</div>
+    </div>
+
+    <form name="orderForm" method="POST" action="http://localhost:8080/DUVVURU/SP5">
+      <h3 style="color: #8B4513;">Place Your Cookie Order:</h3>
+      
+      <div>
+        <input type="text" name="userin" class="cookie-input" 
+               placeholder="Enter your favorite cookie type" />
+      </div>
+      
+      <div class="decorations">
+        🍪 🎄 ☕ 🎄 🍪
+      </div>
+      
+      <div>
+        <input type="submit" value="Place Order" class="order-button" />
+      </div>
+    </form>
+    
+    <div style="margin-top: 30px; padding: 15px; background: rgba(139, 69, 19, 0.1); border-radius: 8px;">
+      <p style="font-size: 0.9em; color: #8B4513; font-style: italic;">
+        Your order will be saved for future visits!
+      </p>
+    </div>
+  </div>
+</body>
+</html>

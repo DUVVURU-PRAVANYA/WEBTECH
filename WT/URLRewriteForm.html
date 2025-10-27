@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🎄 Christmas URL Rewriting Form 🎄</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff4757, #2ed573);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 50px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .christmas-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 5px solid #ff4757;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .christmas-container::before {
+            content: "❄️ ❄️ ❄️ ❄️ ❄️";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 20px;
+            animation: snow 3s infinite;
+        }
+        
+        @keyframes snow {
+            0% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            color: #ff4757;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .form-group {
+            margin: 25px 0;
+        }
+        
+        label {
+            display: block;
+            color: #2ed573;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"] {
+            padding: 15px;
+            border: 3px solid #2ed573;
+            border-radius: 25px;
+            font-size: 1.1em;
+            width: 250px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #ff4757;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+            transform: scale(1.05);
+        }
+        
+        input[type="submit"] {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+            margin-top: 20px;
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
+            background: linear-gradient(45deg, #ff3742, #ff4757);
+        }
+        
+        .decoration {
+            font-size: 2em;
+            margin: 20px 0;
+            animation: twinkle 2s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="christmas-container">
+        <h1>🎅 Santa's Workshop Login 🎅</h1>
+        <div class="decoration">🎄 ⭐ 🎁 ⭐ 🎄</div>
+        
+        <form action="http://localhost:8080/DUVVURU/SP11" method="get">
+            <div class="form-group">
+                <label for="userName">🎅 Enter Your Christmas Name:</label>
+                <input type="text" name="userName" id="userName" placeholder="Ho Ho Ho..." required/>
+            </div>
+            
+            <input type="submit" value="🎄 Enter Santa's Workshop 🎄"/>
+        </form>
+        
+        <div class="decoration">🔔 🎂 🍪 🎂 🔔</div>
+        <p style="color: #2ed573; font-style: italic; margin-top: 20px;">
+            Welcome to our magical Christmas session management!
+        </p>
+    </div>
+</body>
+</html>
