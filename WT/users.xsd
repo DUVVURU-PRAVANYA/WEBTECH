@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <!-- Root element: bio -->
+  <xs:element name="bio">
+    <xs:annotation>
+      <xs:documentation>
+        🎄 Christmas Characters Bio Collection 🎄
+        Contains information about magical holiday characters
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="user" type="userType" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- User type definition -->
+  <xs:complexType name="userType">
+    <xs:annotation>
+      <xs:documentation>
+        Individual Christmas character record
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="id" type="xs:positiveInteger">
+        <xs:annotation>
+          <xs:documentation>Unique identifier (must be positive integer)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      
+      <xs:element name="n" type="characterNameType">
+        <xs:annotation>
+          <xs:documentation>Character name (required, 2-50 characters)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      
+      <xs:element name="description" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Character description (optional)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Custom type for character names -->
+  <xs:simpleType name="characterNameType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="50"/>
+      <xs:pattern value="[A-Za-z\s]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

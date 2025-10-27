@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Christmas Character Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0a1f3d 0%, #1a3a5c 50%, #0f2438 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent);
+            background-size: 200% 200%;
+            animation: twinkle 4s ease-in-out infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3.5em;
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(220, 20, 60, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #c9e4ff;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        .lights-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        
+        .light {
+            width: 18px;
+            height: 28px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: blink 1.5s infinite;
+            box-shadow: 0 0 12px currentColor;
+        }
+        
+        .light:nth-child(1) { background: #e53935; animation-delay: 0s; }
+        .light:nth-child(2) { background: #43a047; animation-delay: 0.3s; }
+        .light:nth-child(3) { background: #1e88e5; animation-delay: 0.6s; }
+        .light:nth-child(4) { background: #fdd835; animation-delay: 0.9s; }
+        .light:nth-child(5) { background: #fb8c00; animation-delay: 1.2s; }
+        .light:nth-child(6) { background: #ab47bc; animation-delay: 1.5s; }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .filter-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 215, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-section label {
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .filter-section input {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid #1565c0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #2c3e50;
+            font-family: 'Georgia', serif;
+            min-width: 280px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-section input:focus {
+            outline: none;
+            border-color: #b71c1c;
+            box-shadow: 0 0 12px rgba(183, 28, 28, 0.3);
+        }
+        
+        .filter-section button {
+            background: linear-gradient(135deg, #b71c1c 0%, #1b5e20 100%);
+            color: #ffffff;
+            padding: 12px 35px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .filter-section button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #c62828 0%, #2e7d32 100%);
+        }
+        
+        .filter-section button:active {
+            transform: translateY(0);
+        }
+        
+        .filter-section button.show-all {
+            background: linear-gradient(135deg, #1b5e20 0%, #ffa726 100%);
+        }
+        
+        .filter-section button.show-all:hover {
+            background: linear-gradient(135deg, #2e7d32 0%, #fb8c00 100%);
+        }
+        
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 215, 0, 0.2);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #b71c1c 0%, #1b5e20 50%, #b71c1c 100%);
+        }
+        
+        th {
+            color: #ffd700;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        tbody tr {
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background: rgba(27, 94, 32, 0.06);
+        }
+        
+        tbody tr:nth-child(even) {
+            background: rgba(183, 28, 28, 0.06);
+        }
+        
+        tbody tr:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: scale(1.01);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        td {
+            padding: 18px 20px;
+            color: #2c3e50;
+            font-size: 1.05em;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        td:first-child {
+            font-weight: bold;
+            color: #c62828;
+            font-size: 1.3em;
+            text-align: center;
+            width: 100px;
+        }
+        
+        td:nth-child(2) {
+            font-weight: 600;
+            color: #1565c0;
+            font-size: 1.15em;
+        }
+        
+        td:nth-child(3) {
+            color: #424242;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #ffffff;
+            font-size: 1.8em;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.5em;
+            padding: 40px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .ornaments {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            letter-spacing: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎄 Christmas Character Browser 🎅</h1>
+        <p class="subtitle">Interactive North Pole Personnel Directory</p>
+        
+        <div class="lights-container">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+        </div>
+        
+        <div class="filter-section">
+            <label>🔍 Filter by Name:</label>
+            <input 
+                type="text" 
+                id="filterInput" 
+                placeholder="Type character name..."
+                onkeyup="if(event.key === 'Enter') filterTable()"
+            />
+            <button onclick="filterTable()">Filter</button>
+            <button onclick="loadXML()" class="show-all">Show All</button>
+        </div>
+        
+        <div class="table-container">
+            <div id="loadingMessage" class="loading">
+                <span class="spinner">🎅</span> Loading characters...
+            </div>
+            
+            <table id="userTable" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Character Name</th>
+                        <th>Role Description</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="ornaments">❄️ ⭐ 🎁 ⛄ 🔔</div>
+        
+        <div class="footer">★ Merry Christmas &amp; Happy Holidays ★</div>
+    </div>
+
+    <script>
+        function loadXML() {
+            // Clear filter input
+            document.getElementById('filterInput').value = '';
+            
+            // Show loading message
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('userTable').style.display = 'none';
+            
+            var xhttp = new XMLHttpRequest();
+            
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var xmlDoc = this.responseXML;
+                    displayUsers(xmlDoc);
+                    
+                    // Hide loading, show table
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    document.getElementById('userTable').style.display = 'table';
+                }
+            };
+            
+            xhttp.open("GET", "users.xml", true);
+            xhttp.send();
+        }
+
+        function displayUsers(xmlDoc) {
+            var tbody = document.getElementById("tableBody");
+            tbody.innerHTML = "";
+            
+            var users = xmlDoc.getElementsByTagName("user");
+            
+            for (var i = 0; i < users.length; i++) {
+                var id = users[i].getElementsByTagName("id")[0].textContent;
+                var name = users[i].getElementsByTagName("name")[0].textContent;
+                var descNode = users[i].getElementsByTagName("description")[0];
+                var description = descNode ? descNode.textContent : "Special Christmas Helper";
+                
+                var row = tbody.insertRow(-1);
+                row.insertCell(0).textContent = id;
+                row.insertCell(1).textContent = name;
+                row.insertCell(2).textContent = description;
+            }
+        }
+
+        function filterTable() {
+            var filterValue = document.getElementById("filterInput").value.toLowerCase();
+            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
+            
+            var visibleCount = 0;
+            
+            for (var i = 0; i < rows.length; i++) {
+                var nameCell = rows[i].getElementsByTagName("td")[1];
+                var name = nameCell.textContent.toLowerCase();
+                
+                if (name.includes(filterValue)) {
+                    rows[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+            
+            // Show message if no results
+            if (visibleCount === 0 && filterValue !== "") {
+                alert("🎅 No characters found matching '" + filterValue + "'\n\n❄️ Try: Santa, Rudolph, Frosty, Mrs. Claus, etc.");
+            }
+        }
+
+        // Load data when page loads
+        window.onload = function() {
+            loadXML();
+        };
+    </script>
+</body>
+</html>

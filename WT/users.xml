@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="users_style.xsl"?>
+<bio>
+    <user>
+        <id>1</id>
+        <name>Santa Claus</name>
+        <description>Chief Gift Officer - Delivers joy worldwide on Christmas Eve</description>
+    </user>
+    <user>
+        <id>2</id>
+        <name>Rudolph</name>
+        <description>Lead Navigator - Guides sleigh with glowing red nose</description>
+    </user>
+    <user>
+        <id>3</id>
+        <name>Mrs. Claus</name>
+        <description>Cookie Master - Creates magical treats for everyone</description>
+    </user>
+    <user>
+        <id>4</id>
+        <name>Frosty</name>
+        <description>Winter Ambassador - Spreads holiday cheer in snowflakes</description>
+    </user>
+    <user>
+        <id>5</id>
+        <name>Elf Jingle</name>
+        <description>Toy Workshop Manager - Crafts dreams into reality</description>
+    </user>
+    <user>
+        <id>6</id>
+        <name>Jack Frost</name>
+        <description>Winter Decorator - Paints frost on windows worldwide</description>
+    </user>
+    <user>
+        <id>7</id>
+        <name>Gingerbread Man</name>
+        <description>Sweet Companion - Runs fast but loves warm hugs</description>
+    </user>
+    <user>
+        <id>8</id>
+        <name>Nutcracker</name>
+        <description>Royal Guard - Protects the Christmas Kingdom</description>
+    </user>
+    <user>
+        <id>9</id>
+        <name>Angel Gloria</name>
+        <description>Tree Top Star - Guides lost travelers home for Christmas</description>
+    </user>
+    <user>
+        <id>10</id>
+        <name>Snowflake</name>
+        <description>Crystal Dancer - Each one unique and magical</description>
+    </user>
+</bio>
