@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Database - Christmas Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #0f2818 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Snowflake animation */
+        @keyframes snowfall1 {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+        }
+        @keyframes snowfall2 {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(-40px); opacity: 0; }
+        }
+        @keyframes snowfall3 {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(60px); opacity: 0; }
+        }
+        @keyframes snowfall4 {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(-50px); opacity: 0; }
+        }
+        @keyframes snowfall5 {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(70px); opacity: 0; }
+        }
+        
+        .snowflake {
+            position: fixed;
+            top: -10%;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.8em;
+            pointer-events: none;
+            z-index: 1;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        .snowflake:nth-child(1) {
+            left: 5%;
+            animation: snowfall1 12s linear infinite;
+            animation-delay: 0s;
+        }
+        .snowflake:nth-child(2) {
+            left: 15%;
+            animation: snowfall2 14s linear infinite;
+            animation-delay: 2s;
+        }
+        .snowflake:nth-child(3) {
+            left: 25%;
+            animation: snowfall3 13s linear infinite;
+            animation-delay: 1s;
+        }
+        .snowflake:nth-child(4) {
+            left: 35%;
+            animation: snowfall4 15s linear infinite;
+            animation-delay: 3s;
+        }
+        .snowflake:nth-child(5) {
+            left: 45%;
+            animation: snowfall1 12.5s linear infinite;
+            animation-delay: 0.5s;
+        }
+        .snowflake:nth-child(6) {
+            left: 55%;
+            animation: snowfall2 13.5s linear infinite;
+            animation-delay: 1.5s;
+        }
+        .snowflake:nth-child(7) {
+            left: 65%;
+            animation: snowfall3 14.5s linear infinite;
+            animation-delay: 2.5s;
+        }
+        .snowflake:nth-child(8) {
+            left: 75%;
+            animation: snowfall4 12.8s linear infinite;
+            animation-delay: 0.8s;
+        }
+        .snowflake:nth-child(9) {
+            left: 85%;
+            animation: snowfall5 13.8s linear infinite;
+            animation-delay: 2.2s;
+        }
+        .snowflake:nth-child(10) {
+            left: 95%;
+            animation: snowfall1 14.2s linear infinite;
+            animation-delay: 1.2s;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(15, 40, 24, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid #d4a574;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 107, 107, 0.5);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #4ade80;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ade80, #ff6b6b);
+            margin: 25px 0;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 5px solid #4ade80;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.2);
+        }
+        
+        a {
+            display: inline-block;
+            margin: 15px auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            border: 2px solid #ff8080;
+        }
+        
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(135deg, #ff5252, #ff3030);
+        }
+        
+        h2, h3 {
+            color: #4ade80;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+        }
+        
+        form {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            color: #ffd700;
+            font-weight: bold;
+            margin: 12px 0 6px 0;
+            font-size: 1.05em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        
+        select, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px 0;
+            border: 2px solid #4ade80;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        select option {
+            background: #1a472a;
+            color: white;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #1a472a;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+            text-transform: uppercase;
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 222, 128, 0.6);
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        
+        input[type="submit"]:active {
+            transform: translateY(0);
+        }
+        
+        p {
+            color: #e0e0e0;
+            font-size: 1.05em;
+            margin: 10px 0;
+        }
+        
+        .ornament {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.5em;
+            animation: swing 3s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-15deg);
+            }
+        }
+        
+        .highlight {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        .info-box {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid #4ade80;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #b3e5b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    
+    <div class="container">
+        <h1>🎄 Student Marklist 🎄</h1>
+        <p class="subtitle">🎅 Christmas Database Management System 🎅</p>
+        
+        <hr>
+        
+        <div class="section">
+            <h3><span class="ornament">🎁</span> View All Students' Marks <span class="ornament">🎁</span></h3>
+            <p>Click below to display all students' mark details:</p>
+            <a href="db1">🎄 Display All Students' Marks 🎄</a>
+        </div>
+        
+        <hr>
+        
+        <div class="section">
+            <h3><span class="ornament">⛄</span> Department Specific Marks <span class="ornament">⛄</span></h3>
+            <p>Select a department to view specific marks:</p>
+            <form action="db2" method="get">
+                <label for="course">🎅 Select Department:</label>
+                <select id="course" name="course">
+                    <option value="">-- Select Department --</option>
+                    <option value="CSE">COMPUTER SCIENCE AND ENGINEERING</option>
+                    <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
+                    <option value="MECH">MECHANICAL ENGINEERING</option>
+                    <option value="EEE">ELECTRICAL ENGINEERING</option>
+                </select>
+                <input type="submit" value="🎄 SUBMIT 🎄"/>
+            </form>
+        </div>
+        
+        <hr>
+        
+        <div class="section">
+            <h2><span class="ornament">🎁</span> Add New Department <span class="ornament">🎁</span></h2>
+            <div class="highlight">
+                <p>📝 Fill in the details below to add a new department to the database:</p>
+            </div>
+            <form action="db3" method="post">
+                <label for="depid">🎅 Department ID:</label>
+                <input type="text" id="depid" name="depid" placeholder="e.g., 201" required/>
+                
+                <label for="depname">🎅 Department Name:</label>
+                <input type="text" id="depname" name="depname" placeholder="e.g., Information Technology" required/>
+                
+                <label for="depnos">🎅 Number of Students:</label>
+                <input type="text" id="depnos" name="depnos" placeholder="e.g., 120" required/>
+                
+                <input type="submit" value="🎄 ADD DEPARTMENT 🎄"/>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2><span class="ornament">✏️</span> Update Department Details <span class="ornament">✏️</span></h2>
+            <div class="highlight">
+                <p>📝 Update existing department information:</p>
+            </div>
+            <form action="db4" method="post">
+                <label for="update_depid">🎅 Department ID (to update):</label>
+                <input type="text" id="update_depid" name="depid" placeholder="e.g., 104" required/>
+                
+                <label for="update_depname">🎅 New Department Name:</label>
+                <input type="text" id="update_depname" name="depname" placeholder="e.g., Computer Science" required/>
+                
+                <label for="update_depnos">🎅 New Number of Students:</label>
+                <input type="text" id="update_depnos" name="depnos" placeholder="e.g., 75" required/>
+                
+                <input type="submit" value="🎄 UPDATE DEPARTMENT 🎄"/>
+            </form>
+        </div>
+        
+        <hr>
+        <p style="text-align: center; margin-top: 30px; font-size: 1.3em;">
+            ❄️ 🎄 Wishing you a Merry Database Christmas! 🎄 ❄️
+        </p>
+    </div>
+</body>
+</html>
