@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🦌 Reindeer Registry - Personal Tracker 🎅</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.8; }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #228b22, 0 0 30px #228b22; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 30px #32cd32, 0 0 40px #32cd32; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #1a472a, #2d5016, #0f2027);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            opacity: 0.8;
+            animation: snowfall linear infinite;
+            pointer-events: none;
+        }
+        
+        .container {
+            background: linear-gradient(135deg, rgba(0, 100, 0, 0.9), rgba(34, 139, 34, 0.9));
+            padding: 60px 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4),
+                        inset 0 0 30px rgba(255, 255, 255, 0.2);
+            max-width: 550px;
+            border: 3px solid #ffd700;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .container::before {
+            content: '🦌';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4em;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .subtitle {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        input[type="text"] {
+            width: 85%;
+            padding: 16px;
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+            margin-top: 15px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d5016;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        input[type="text"]::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        input[type="submit"] {
+            margin-top: 30px;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #dc143c, #ff0000);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(220, 20, 60, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.7);
+            background: linear-gradient(135deg, #ff0000, #dc143c);
+        }
+        
+        .ornament {
+            position: absolute;
+            font-size: 2em;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+        
+        .ornament-left { top: 20px; left: 20px; }
+        .ornament-right { top: 20px; right: 20px; }
+        .ornament-bottom-left { bottom: 20px; left: 30px; }
+        .ornament-bottom-right { bottom: 20px; right: 30px; }
+        
+        .bells {
+            position: absolute;
+            top: -20px;
+            font-size: 1.5em;
+        }
+        
+        .bells-left { left: 80px; }
+        .bells-right { right: 80px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ornament ornament-left">⭐</div>
+        <div class="ornament ornament-right">⭐</div>
+        <div class="ornament ornament-bottom-left">🎄</div>
+        <div class="ornament ornament-bottom-right">🎄</div>
+        <div class="bells bells-left">🔔</div>
+        <div class="bells bells-right">🔔</div>
+        
+        <h1>🦌 Reindeer Registry 🦌</h1>
+        <p class="subtitle">Track Your Personal Christmas Visits!</p>
+        
+        <form action="http://localhost:8080/DUVVURU/P8B" method="GET">
+            <input type="text" name="userName" placeholder="🎅 Enter Your Name (e.g., Rudolph)" required/>
+            <br>
+            <input type="submit" value="Join the Sleigh 🛷">
+        </form>
+    </div>
+    
+    <script>
+        // Create falling snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'em';
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => snowflake.remove(), 5000);
+        }
+        
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>

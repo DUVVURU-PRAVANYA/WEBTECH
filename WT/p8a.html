@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🎄 Santa's Workshop - All Visitors 🎅</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.8; }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0000, 0 0 40px #ff0000; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000; }
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            opacity: 0.8;
+            animation: snowfall linear infinite;
+            pointer-events: none;
+        }
+        
+        .container {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(220, 20, 60, 0.9));
+            padding: 60px 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4),
+                        inset 0 0 30px rgba(255, 255, 255, 0.2);
+            max-width: 550px;
+            border: 3px solid gold;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .container::before {
+            content: '🎄';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4em;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .subtitle {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        input[type="submit"] {
+            margin-top: 30px;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #228b22, #32cd32);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(34, 139, 34, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(50, 205, 50, 0.7);
+            background: linear-gradient(135deg, #32cd32, #228b22);
+        }
+        
+        .ornament {
+            position: absolute;
+            font-size: 2em;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+        
+        .ornament-left { top: 20px; left: 20px; }
+        .ornament-right { top: 20px; right: 20px; }
+        .ornament-bottom-left { bottom: 20px; left: 30px; }
+        .ornament-bottom-right { bottom: 20px; right: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ornament ornament-left">🔴</div>
+        <div class="ornament ornament-right">🟡</div>
+        <div class="ornament ornament-bottom-left">🔵</div>
+        <div class="ornament ornament-bottom-right">🟢</div>
+        
+        <h1>🎅 Santa's Workshop 🎅</h1>
+        <p class="subtitle">Track All Christmas Visitors!</p>
+        
+        <form action="http://localhost:8080/DUVVURU/P8A" method="GET">
+            <input type="submit" value="Enter Workshop 🎁">
+        </form>
+    </div>
+    
+    <script>
+        // Create falling snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'em';
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => snowflake.remove(), 5000);
+        }
+        
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>
